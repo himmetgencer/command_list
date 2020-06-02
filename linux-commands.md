@@ -20,6 +20,11 @@ View All Disk Partitions
 fdisk -l
 ```
 
+Install VirtualBox Guest Additions in Ubuntu
+```sh
+sudo apt install build-essential dkms linux-headers-$(uname -r)
+```
+
 | Description | Link |
 | ------ | ------ |
 | - | -|
