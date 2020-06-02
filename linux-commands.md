@@ -25,6 +25,11 @@ Install VirtualBox Guest Additions in Ubuntu
 sudo apt install build-essential dkms linux-headers-$(uname -r)
 ```
 
+Access shared folder in virtualbox
+```sh
+sudo adduser [your-user-name] vboxsf
+```
+
 | Description | Link |
 | ------ | ------ |
 | - | -|
