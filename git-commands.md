@@ -40,6 +40,24 @@ git pull
 git push origin master
 ```
 
+```sh
+git branch branch_name
+git checkout branch_name
+git diff branch1 branch2
+```
+
+```sh
+git merge branch_name
+```
+
+```sh
+git revert hash_code
+git reset --keep hash_code //local commitleri saklı tutar.
+git reset --soft hash_code //staged file haline getirir.
+git reset --mixed hash_code //untracked hale getirir.
+git reset --hard hash_code //herseyi siler geriye dondurur
+```
+
 | Description | Link |
 | ------ | ------ |
 | - | -|
