@@ -30,6 +30,11 @@ Access shared folder in virtualbox
 sudo adduser [your-user-name] vboxsf
 ```
 
+scp copy directory
+```sh
+scp -r username@ip:remoteDir destinationDir
+```
+
 | Description | Link |
 | ------ | ------ |
 | - | -|
