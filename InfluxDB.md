@@ -50,4 +50,32 @@ influx -format=json
 influx -format=json-pretty
 ```
 
+```sh
+curl -i -XPOST http://localhost:8086/query --data-urlencode "q=CREATE DATABASE mydb"
+
+# write to a database using the InfluxDB 1.8 API
+curl -i -XPOST 'http://localhost:8086/write?db=mydb'
+--data-binary 'cpu_load_short,host=server01,region=us-west value=0.64 1434055562000000000'
+
+# write to a database using the InfluxDB 2.0 API (compatible with InfluxDB 1.8+)
+curl -i -XPOST 'http://localhost:8086/api/v2/write?bucket=db/rp&precision=ns' \
+  --header 'Authorization: Token username:password' \
+  --data-raw 'cpu_load_short,host=server01,region=us-west value=0.64 1434055562000000000'
+
+curl -i -XPOST 'http://localhost:8086/write?db=mydb' --data-binary @cpu_data.txt
+
+#Query data with Flux
+curl -XPOST localhost:8086/api/v2/query -sS \
+  -H 'Accept:application/csv' \
+  -H 'Content-type:application/vnd.flux' \
+  -d 'from(bucket:"telegraf")
+        |> range(start:-5m)
+        |> filter(fn:(r) => r._measurement == "cpu")' 
+
+#Query data with InfluxQL
+curl -G 'http://localhost:8086/query?pretty=true' --data-urlencode "db=mydb" --data-urlencode "q=SELECT \"value\" FROM \"cpu_load_short\" WHERE \"region\"='us-west'"
+```
+
+## Authors
+[Himmet  GENCER](https://www.linkedin.com/in/himmet-gencer-214b7020/)
 
