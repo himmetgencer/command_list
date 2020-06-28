@@ -72,7 +72,7 @@ curl -XPOST localhost:8086/api/v2/query -sS \
         |> range(start:-5m)
         |> filter(fn:(r) => r._measurement == "cpu")' 
 
-#Query data with InfluxQL
+# Query data with InfluxQL
 curl -G 'http://localhost:8086/query?pretty=true' --data-urlencode "db=mydb" --data-urlencode "q=SELECT \"value\" FROM \"cpu_load_short\" WHERE \"region\"='us-west'"
 ```
 
