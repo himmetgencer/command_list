@@ -32,4 +32,22 @@ GROUP BY time(30m)
 END
 
 CREATE database mydb with duration 7d REPLICATION 1 SHARD DURATION 1h name myRP
+
+#INSERT DEFAULT RETENTION POLICY
+INSERT treasures,captain_id=pirate_king value=2
+#INSERT EXISTING RETENTION POLICY
+INSERT INTO oneday treasures,captain_id=pirate_king value=2
 ```
+
+INFLUX CLI
+```sh
+influx
+influx --help
+
+influx -execute 'SELECT * FROM "h2o_feet" LIMIT 3' -database="NOAA_water_database" -precision=rfc3339
+
+influx -format=json
+influx -format=json-pretty
+```
+
+
