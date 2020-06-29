@@ -50,6 +50,7 @@ influx -format=json
 influx -format=json-pretty
 ```
 
+QUERIES
 ```sh
 curl -i -XPOST http://localhost:8086/query --data-urlencode "q=CREATE DATABASE mydb"
 
@@ -91,9 +92,49 @@ from(bucket:"apple_stand/autogen")
   
 #Basic calculations within a query using InfluQL
 SELECT (sum(field_key1) / sum(field_key2)) * 100 AS "calculated_percentage" FROM "measurement_name" WHERE time < now() - 15m GROUP BY time(1m)
-
 ```
 
+Configuration
+```sh
+max-series-per-database = 1000000
+max-series-per-database = 0 (unlimited number of series per database)
+
+max-values-per-tag = 100000
+max-series-per-tag = 0 (unlimited number)
+
+auth-enabled =false or true
+
+max-body-size = 25000000
+```
+
+Authorization
+```sh
+curl -G http://localhost:8086/query -u todd:influxdb4ever --data-urlencode "q=SHOW DATABASES"
+
+curl -G "http://localhost:8086/query?u=todd&p=influxdb4ever" --data-urlencode "q=SHOW DATABASES"
+
+curl -G http://localhost:8086/query --data-urlencode "u=todd" --data-urlencode "p=influxdb4ever" --data-urlencode "q=SHOW DATABASES"
+
+influx -username todd -password influxdb4ever
+
+# User management commands
+CREATE USER admin WITH PASSWORD 'password' WITH ALL PRIVILEGES
+GRANT ALL PRIVILEGES TO "todd"
+REVOKE ALL PRIVELEGES TO "todd"
+SHOW USERS
+GRANT READ ON "database_name" TO "username"
+GRANT ALL ON "database_name" TO "username"
+REVOKE ALL ON "database_name" FROM "username" 
+REVOKE WRITE ON "database_name" FROM "username"
+SHOW GRANTS FOR "username"
+SET PASSWORD FOR "username" = 'password'
+DROP USER "username"
+```
+Authenticate using JWT tokens
+https://docs.influxdata.com/influxdb/v1.8/administration/authentication_and_authorization/#authenticate-using-jwt-tokens
+
+Authenticate Telegraf requests to InfluxDB
+https://docs.influxdata.com/influxdb/v1.8/administration/authentication_and_authorization/#authenticate-telegraf-requests-to-influxdb
 
 
 ## Authors
