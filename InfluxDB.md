@@ -74,7 +74,27 @@ curl -XPOST localhost:8086/api/v2/query -sS \
 
 # Query data with InfluxQL
 curl -G 'http://localhost:8086/query?pretty=true' --data-urlencode "db=mydb" --data-urlencode "q=SELECT \"value\" FROM \"cpu_load_short\" WHERE \"region\"='us-west'"
+
+# Calculate the average percentage of total weight per variety each hour
+from(bucket:"apple_stand/autogen")
+  |> range(start: 2018-06-18T00:00:00.00Z, stop: 2018-06-19T16:35:00.00Z)
+  |> filter(fn: (r) => r._measurement == "variety")
+  |> aggregateWindow(every:1h, fn: mean)
+  |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")
+  |> map(fn: (r) => ({ r with
+    granny_smith: r.granny_smith / r.total_weight * 100.0,
+    golden_delicious: r.golden_delicious / r.total_weight * 100.0,
+    fuji: r.fuji / r.total_weight * 100.0,
+    gala: r.gala / r.total_weight * 100.0,
+    braeburn: r.braeburn / r.total_weight * 100.0
+  }))
+  
+#Basic calculations within a query using InfluQL
+SELECT (sum(field_key1) / sum(field_key2)) * 100 AS "calculated_percentage" FROM "measurement_name" WHERE time < now() - 15m GROUP BY time(1m)
+
 ```
+
+
 
 ## Authors
 [Himmet  GENCER](https://www.linkedin.com/in/himmet-gencer-214b7020/)
