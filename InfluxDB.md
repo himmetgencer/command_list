@@ -130,6 +130,13 @@ SHOW GRANTS FOR "username"
 SET PASSWORD FOR "username" = 'password'
 DROP USER "username"
 ```
+
+```sh
+curl http://localhost:8086/debug/requests
+curl http://localhost:8086/debug/requests?seconds=60
+curl -sl -I http://localhost:8086/ping
+```
+
 Authenticate using JWT tokens
 https://docs.influxdata.com/influxdb/v1.8/administration/authentication_and_authorization/#authenticate-using-jwt-tokens
 
