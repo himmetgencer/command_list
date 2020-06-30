@@ -136,6 +136,8 @@ https://docs.influxdata.com/influxdb/v1.8/administration/authentication_and_auth
 Authenticate Telegraf requests to InfluxDB
 https://docs.influxdata.com/influxdb/v1.8/administration/authentication_and_authorization/#authenticate-telegraf-requests-to-influxdb
 
+Backup and restore
+https://docs.influxdata.com/influxdb/v1.8/administration/backup_and_restore/
 
 ## Authors
 [Himmet  GENCER](https://www.linkedin.com/in/himmet-gencer-214b7020/)
