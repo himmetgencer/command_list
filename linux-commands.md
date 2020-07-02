@@ -35,6 +35,11 @@ scp copy directory
 scp -r username@ip:remoteDir destinationDir
 ```
 
+diagnostic message
+```sh
+sudo dmesg -T
+```
+
 | Description | Link |
 | ------ | ------ |
 | - | -|
