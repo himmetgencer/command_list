@@ -10,6 +10,7 @@ summarize free disk space
 ```sh
 df -h
 sudo du -s -k /*
+du -sm * | awk '$1 > 10'
 ```
 
 ```sh
