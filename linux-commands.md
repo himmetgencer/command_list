@@ -9,6 +9,7 @@ du -h *
 summarize free disk space
 ```sh
 df -h
+sudo du -s -k /*
 ```
 
 ```sh
