@@ -42,6 +42,12 @@ diagnostic message
 sudo dmesg -T
 ```
 
+for writing to NTFS partitions
+```sh
+sudo apt-get install ntfs-3g
+```
+
+
 | Description | Link |
 | ------ | ------ |
 | - | -|
