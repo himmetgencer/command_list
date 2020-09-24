@@ -13,7 +13,7 @@ ssh-keygen -t rsa -b 4096 -C "email"
 eval ssh-agent -s
 exec ssh-agent bash
 ssh-add ~/.ssh/id_rsa
-cat ~./ssh/id_rsa.pub  #add to github
+cat ~/.ssh/id_rsa.pub  #add to github
 ssh -T git@github.com
 ```
 
