@@ -56,6 +56,7 @@ git reset --keep hash_code //local commitleri saklı tutar.
 git reset --soft hash_code //staged file haline getirir.
 git reset --mixed hash_code //untracked hale getirir.
 git reset --hard hash_code //herseyi siler geriye dondurur
+git check-ignore "folder_name"
 ```
 
 | Description | Link |
