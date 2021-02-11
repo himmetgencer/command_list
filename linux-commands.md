@@ -4,6 +4,7 @@ summarize disk usage
 ```sh
 du -h folder_name
 du -h *
+sudo find / -xdev -type f -size +100M
 ```
 
 summarize free disk space
